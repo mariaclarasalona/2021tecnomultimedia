@@ -1,4 +1,6 @@
-//  https://youtu.be/ZQmNRr2ZJ1Y
+
+////// https://youtu.be/zd8ruhKomWc
+
 
 String [] storyTxt = { "Eres un marinero. De dónde vienes se escuchan rumores y leyendas de que barcos desaparecen en una parte remota del mar, decides investigar y te encuentras con una isla que no está en ningún mapa, decides desembarcar y tratar de descubrir el fondo de este misterio.",
 "Llegas a la isla y parece estar completamente desierta, no parece haber pasado un barco por este puerto en meses.",
@@ -14,13 +16,34 @@ String [] storyTxt = { "Eres un marinero. De dónde vienes se escuchan rumores y
 "mientras escalas la torre tienes vista de toda la isla, estas muy alto.",
 "Llegas al final de la escalera y solo encuentras una especie de altar en la cima con algo en el medio.",
 "En el altar encuentras y libro, parece viejo y no puedes entender los simbolos en los que está escrito.",
+"Decides dejarlo y vuelves a tu barco buscando olvidar todo el tiempo perdido solo para encontrarte con un libro de garabatos, pero no puedes evitar sentir que alguien... o algo... te siguio desde la isla.",
+"te sientes más seguro llevandotelo, lo tomas y te lo llevas de regreso a tu barco, puede ser que este libro tenga una explicacion sobre lo que esta pasando. ",
 };
 
-String [] choichesTxt = { "1.INICIAR", "2.CRÉDITOS","1. Dar media vuelta e irse", "2. Ir hacia la ciudad", "Nada debería salir mal", "1. Hacia el acantilado", "3. Hacia la colina", "4. Explorar la ciudad", "2. Acercarse a la fuente", "Debes acercarte al agua", "Necesitas acercarte", "Intenta esconderte", "No puedes escapar", "Observar más de cerca", "Hay algo en el agua", "subir", "seguir subiendo","acercarte", "1. Lo dejas", "2. Te lo llevas"  
+String [] choichesTxt = { "PRESIONA (1).INICIAR", 
+"HAZ EN CUALQUIER MOMENTO (CLICK) O PRESIONA (2) AHORA PARA VER LOS .CRÉDITOS",
+"1. Dar media vuelta e irse", 
+"2. Ir hacia la ciudad", 
+"1.Nada debería salir mal", 
+"1. Hacia el acantilado", 
+"3. Hacia la colina", 
+"4. Explorar la ciudad", 
+"2. Acercarse a la fuente", 
+"1.Debes acercarte al agua", 
+"1.Necesitas acercarte", 
+"1.Intenta esconderte", 
+"1.No puedes escapar", 
+"1.Observar más de cerca", 
+"1.Hay algo en el agua", 
+"1.subir", 
+"1.seguir subiendo",
+"1.acercarte", 
+"1. Lo dejas", 
+"2. Te lo llevas"  
 };
 
 
-//15 fondos
+
 int maxImages = 15;
 PImage[] fondos = new PImage[maxImages];
 int imageIndex = 0;
@@ -31,11 +54,13 @@ PFont fuente;
 int estado;
 
 void setup (){
+  frameRate(12);
   size(800,600);
   background (0);
   
-  for(int i = 0; i < fondos.length; i++)
+  for(int i = 0; i < fondos.length; i++){
     fondos[i] = loadImage("c_" + i + ".png");
+  }
   
   
   //carga de fuente e imagenes
@@ -143,13 +168,13 @@ void draw (){
   
   text(storyTxt [6],80,420,640,500);
   
-  text(choichesTxt [12],80,490);
+  text(choichesTxt [11],80,490);
   }
   else if(estado == 13){// callejon
   
   text(storyTxt [7],80,420,640,500);
   
-  text(choichesTxt [13],80,490);
+  text(choichesTxt [12],80,490);
   }
   
   else if(estado == 15){// final 1
@@ -184,18 +209,22 @@ void draw (){
   fill(0);
   rect(0,0,800,600);
   popStyle();
-  text("Final 4",80,420,640,500);
+  text("Final 4",80,470,640,500);
   
-  text("click",80,490);
+  text(storyTxt [14],80,420,640,500);
+  
+  text("click",80,550);
   }
   else if(estado == 19){// Final 5
   pushStyle();
   fill(0);
   rect(0,0,800,600);
   popStyle();
-  text("Final 5",80,420,640,500);
+  text("Final 5",80,470,640,500);
   
-  text("click",80,490);
+  text(storyTxt [15],80,420,640,500);
+  
+  text("click",80,550);
   }
   else if(estado == 20){// final 6
   pushStyle();
@@ -206,9 +235,6 @@ void draw (){
   
   text("click",80,490);
   }
-
-
-
   
 }
 
@@ -237,64 +263,65 @@ void keyPressed(){
       
     }else if(estado == 1){//puerto
     if( key == '1' ){ //vuelta atras
-      estado +=1;
-      imageIndex+=1;
+      estado =2;
+      imageIndex =2;
       } else if( key == '2' ){ //ir ciudad
-      estado += 2;
-      imageIndex += 2;
+      estado = 3;
+      imageIndex = 3;
       }
       
     }else if(estado == 3){ //ciudad
     if( key == '1' ){ //ir acantilado
-      estado +=1;
-      imageIndex+=1;
+      estado =4;
+      imageIndex =4;
       
       } else if( key == '2' ){ //ir fuente, estado =
-      estado += 3;
+      estado =6;
       
       }else if( key == '3' ){//ir colina
-      estado += 5;
-      imageIndex += 4;
+      estado =8;
+      imageIndex =7;
       
       }else if( key == '4' ){ //explorar
-      estado += 9;
-      imageIndex += 9;
+      estado =12;
+      imageIndex =12;
       
       }
     }else if(estado == 6){ //fuente
     if( key == '1' ){ //acercarse
-      estado +=1;
-      imageIndex+=3;
+      estado =7;
+      imageIndex =6;
     }
       }
       ///finales
       else if(estado == 2){ 
     if( key == '1' ){ //final 1
-      estado +=13; //15
+      estado =15;
       }
     }else if(estado == 5){ 
     if( key == '1' ){ //final 2
-      estado +=16; //16
+      estado =16;
       }
     }else if(estado == 7){ 
     if( key == '1' ){ //final 3
-      estado +=10; //17
+      estado =17;
       }
     }else if(estado == 11){ //altar
     if( key == '1' ){ //Final 4
-      estado += 7; //18
+      estado =18; 
       
     }else if( key == '2' ){//Final 5
-    estado += 8; //19
+    estado =19;
     
+      }
     }else if(estado == 13){ //final 6
-    if( key == '1' ){ 
-      estado +=7; //20
+    if( key == '1' ){
+      estado =20;
       }
     }
       
       
-      }else if(estado == 4  || estado == 8 || estado == 9 || estado == 10 || estado == 12){
+    else if(estado == 4  || estado == 8 || estado == 9 || estado == 10 || estado == 12){
      if( key == '1' ){
       estado +=1;
       imageIndex+=1;
