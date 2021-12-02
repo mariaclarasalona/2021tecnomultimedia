@@ -2,44 +2,61 @@
 
 class tentaculos {
   //propiedades
-  float x,y,ancho,alto;
-  float movx, movy;
+  float xT,yT,anchoT,altoT;
+  float movxT, movyT;
   
   //constructor
   tentaculos(){
-    x = random(50,width-50);
-    y = random(50,height-50);
-    ancho = 40;
-    alto = 60;
-    //movx=random(2,-2);
-    movy= random(1,3);
+    tentIndex = int(random(0,tentImg.length));
+    xT = random(50,width-50);
+    yT = random(50,height-50);
+    anchoT = 40;
+    altoT = 60;
+    //movxT=random(2,-2);
+    movyT= random(1,3);
   }
   //funcionalidad
   void dibujar (){
-    image(tentImg[random(0,2)],x,y);
+    rTents[tentIndex].dibujar();
+  
   }
   void mover(){
-    //x +=movx;
-    y +=movy;
-    if (y>height+alto/2){
-      x= random(350,450);
-      y=0;
-      movy= random(1.5,3);
-      //movx=random(2,-2);
+    
+    yT +=movyT;
+    if (yT>height+altoT/2){
+      xT= random(350,450);
+      yT=0;
+      movyT= random(1.5,3);
     }
+      
   }
+  
   void agrandar(){
-    ancho+=random(0.1,0.4);
-    alto+=random(0.1,0.4);
-    if (y>height+40){
-      ancho = 40;
-      alto = 40;
+    
+    anchoT+=random(0.1,0.4);
+    altoT+=random(0.1,0.4);
+    if (yT>height+40){
+      anchoT = 40;
+      altoT = 40;
+    }
+   
+  }
+  boolean colision(float xC,float yC, float r){
+    if (dist (xT,yT,xC,yC) < anchoT/2+r){
+      yT = random(50,height-50);
+      return true;
+    } else {
+      return false;
     }
   }
+  
   void actualizar(){
+  
     dibujar();
     mover();
     agrandar();
+      
   }
+
 
 }

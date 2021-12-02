@@ -1,35 +1,34 @@
 class barco {
    //propiedades
-  float bx,by,ancho,alto;
-  float movx, movy;
+  float bx,by,anchoB,altoB;
+  float movxB, movyB;
   
   //constructor
   barco(){
     bx=0;
     by=550;
-    ancho=40;
-    alto=60;
+    anchoB=40;
+    altoB=60;
   }
+  //funcionalidad
   void dibujar (){
     image(barcoPng,380,530);
   }
   
   void movIzquierda() {
-   if (key == LEFT){
+
    bx -- ;
-   }
   }
   void movDerecha(){
-   if (key == RIGHT){
+
    bx ++ ;
-   } 
   }
-  void movimiento (){
+ /* void movimiento (){
     movIzquierda();
     movDerecha();
   }
+  */
   void actualizar(){
-    keyPressed();
     dibujar ();
   }
 }
